@@ -1,8 +1,14 @@
 import React from 'react';
 
-const QuestionCard = ({ index, question, selected, setAnswer }) => {
+const QuestionCard = ({ index, question, selected, setAnswer, status }) => {
+  const getCardStyle = () => {
+    if (status === 'correct') return 'question-card correct';
+    if (status === 'incorrect') return 'question-card incorrect';
+    return 'question-card';
+  };
+
   return (
-    <div className="question-card">
+    <div className={getCardStyle()}>
       <p>{index + 1}. {question.question}</p>
       <div className="options">
         {question.options.map((opt, i) => (

@@ -23,16 +23,29 @@ function App() {
   const reset = () => {
     setQuestions(generateQuestions()); // triggers useEffect to reset answers
     setScore(null);
+    setFeedback([]); // reset colors
   };  
+
+  const [feedback, setFeedback] = useState([]);
   
   const submit = () => {
     if (!name.trim()) return alert("Please enter your name!");
     let count = 0;
+    const newFeedback = [];
+  
     answers.forEach((ans, i) => {
-      if (ans === questions[i].answer) count++;
+      if (ans === questions[i].answer) {
+        count++;
+        newFeedback[i] = 'correct';
+      } else {
+        newFeedback[i] = 'incorrect';
+      }
     });
+  
     setScore(count);
-  };  
+    setFeedback(newFeedback);
+  };
+   
 
   return (
     <div className="container">
@@ -53,6 +66,7 @@ function App() {
             question={q}
             selected={answers[i]}
             setAnswer={setAnswer}
+            status={feedback[i]} 
           />
         ))}
       </div>

@@ -47,6 +47,16 @@ h1 {
   background: #fafafa;
 }
 
+.question-card.correct {
+  background-color: #e6f4ea;
+  border: 1px solid #e6f4ea;
+}
+
+.question-card.incorrect {
+  background-color: #fcebea;
+  border: 1px solid #fcebea;
+}
+
 @media (max-width: 768px) {
   .question-grid {
     grid-template-columns: 1fr;
