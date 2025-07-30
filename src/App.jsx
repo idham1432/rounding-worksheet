@@ -1,12 +1,18 @@
 import React, { useState } from 'react';
-import questions from './data/questions';
+import { useEffect } from 'react';
+import generateQuestions from './data/generateQuestions';
 import QuestionCard from './components/QuestionCard';
 import './styles.css';
 
 function App() {
-  const [answers, setAnswers] = useState(Array(questions.length).fill(null));
+  const [questions, setQuestions] = useState(() => generateQuestions());
+  const [answers, setAnswers] = useState([]);
   const [name, setName] = useState('');
   const [score, setScore] = useState(null);
+
+  useEffect(() => {
+    setAnswers(Array(questions.length).fill(null));
+  }, [questions]);
 
   const setAnswer = (index, value) => {
     const updated = [...answers];
@@ -15,10 +21,10 @@ function App() {
   };
 
   const reset = () => {
-    setAnswers(Array(questions.length).fill(null));
+    setQuestions(generateQuestions()); // triggers useEffect to reset answers
     setScore(null);
-  };
-
+  };  
+  
   const submit = () => {
     if (!name.trim()) return alert("Please enter your name!");
     let count = 0;
@@ -26,7 +32,7 @@ function App() {
       if (ans === questions[i].answer) count++;
     });
     setScore(count);
-  };
+  };  
 
   return (
     <div className="container">
@@ -37,6 +43,7 @@ function App() {
         </label>
         <span>Score: {score !== null ? score + " / " + questions.length : "-"}</span>
       </div>
+      <p className="instruction">Circle the correct answers.</p>
 
       <div className="question-grid">
         {questions.map((q, i) => (
@@ -49,7 +56,6 @@ function App() {
           />
         ))}
       </div>
-
 
       <div className="buttons">
         <button onClick={submit}>Submit</button>
