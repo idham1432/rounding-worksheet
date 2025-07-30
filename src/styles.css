@@ -1,20 +1,26 @@
 body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
   font-family: Arial, sans-serif;
   padding: 2rem;
   background: #f0f8ff;
+  display: flex;
+  justify-content: center;
 }
 
 .container {
   max-width: 800px;
   margin: auto;
   background: white;
-  padding: 2rem;
+  padding: 1.5rem;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
 h1 {
   text-align: center;
+  font-size: 36px;
 }
 
 .header {
@@ -23,12 +29,24 @@ h1 {
   margin-bottom: 20px;
 }
 
+.question-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
 .question-card {
-  margin: 1rem 0;
+  margin: 0;
   padding: 1rem;
   border: 1px solid #ddd;
   border-radius: 8px;
   background: #fafafa;
+}
+
+@media (max-width: 768px) {
+  .question-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .options label {

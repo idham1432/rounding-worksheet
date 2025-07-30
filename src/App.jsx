@@ -38,15 +38,18 @@ function App() {
         <span>Score: {score !== null ? score + " / " + questions.length : "-"}</span>
       </div>
 
-      {questions.map((q, i) => (
-        <QuestionCard
-          key={i}
-          index={i}
-          question={q}
-          selected={answers[i]}
-          setAnswer={setAnswer}
-        />
-      ))}
+      <div className="question-grid">
+        {questions.map((q, i) => (
+          <QuestionCard
+            key={i}
+            index={i}
+            question={q}
+            selected={answers[i]}
+            setAnswer={setAnswer}
+          />
+        ))}
+      </div>
+
 
       <div className="buttons">
         <button onClick={submit}>Submit</button>
