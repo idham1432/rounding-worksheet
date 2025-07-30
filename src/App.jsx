@@ -9,6 +9,7 @@ function App() {
   const [answers, setAnswers] = useState([]);
   const [name, setName] = useState('');
   const [score, setScore] = useState(null);
+  const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {
     setAnswers(Array(questions.length).fill(null));
@@ -24,6 +25,7 @@ function App() {
     setQuestions(generateQuestions()); // triggers useEffect to reset answers
     setScore(null);
     setFeedback([]); // reset colors
+    setSubmitted(false);
   };  
 
   const [feedback, setFeedback] = useState([]);
@@ -44,8 +46,8 @@ function App() {
   
     setScore(count);
     setFeedback(newFeedback);
+    setSubmitted(true);
   };
-   
 
   return (
     <div className="container">
@@ -66,7 +68,9 @@ function App() {
             question={q}
             selected={answers[i]}
             setAnswer={setAnswer}
-            status={feedback[i]} 
+            status={feedback[i]}
+            disabled={submitted} 
+            submitted={submitted}
           />
         ))}
       </div>

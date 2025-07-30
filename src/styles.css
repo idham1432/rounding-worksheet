@@ -47,6 +47,18 @@ h1 {
   background: #fafafa;
 }
 
+.question-card.submitted {
+  cursor: not-allowed;
+}
+
+.question-card.submitted .options label {
+  cursor: not-allowed;
+}
+
+.question-card.submitted .options label:hover {
+  background-color: inherit;
+}
+
 .question-card.correct {
   background-color: #e6f4ea;
   border: 1px solid #e6f4ea;

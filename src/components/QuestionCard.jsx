@@ -1,10 +1,12 @@
 import React from 'react';
 
-const QuestionCard = ({ index, question, selected, setAnswer, status }) => {
+const QuestionCard = ({ index, question, selected, setAnswer, status, disabled, submitted }) => {
   const getCardStyle = () => {
-    if (status === 'correct') return 'question-card correct';
-    if (status === 'incorrect') return 'question-card incorrect';
-    return 'question-card';
+    let base = 'question-card';
+    if (status === 'correct') base += ' correct';
+    if (status === 'incorrect') base += ' incorrect';
+    if (submitted) base += ' submitted';
+    return base;
   };
 
   return (
@@ -19,6 +21,7 @@ const QuestionCard = ({ index, question, selected, setAnswer, status }) => {
               value={opt}
               checked={selected === opt}
               onChange={() => setAnswer(index, opt)}
+              disabled={disabled}
             />
             {opt}
           </label>
