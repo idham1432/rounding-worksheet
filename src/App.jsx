@@ -12,11 +12,7 @@ function App() {
   const [submitted, setSubmitted] = useState(false);
   const [leaderboard, setLeaderboard] = useState([]);
 
-  useEffect(() => {
-    setAnswers(Array(questions.length).fill(null));
-  }, [questions]);
-
-  useEffect(() => {
+  const fetchLeaderboard = () => {
     fetch('http://localhost:4000/api/scores')
       .then(res => res.json())
       .then(data => {
@@ -26,7 +22,15 @@ function App() {
       .catch(err => {
         console.error('Error fetching leaderboard:', err);
       });
-  }, [submitted]);
+  };
+
+  useEffect(() => {
+    setAnswers(Array(questions.length).fill(null));
+  }, [questions]);
+
+  useEffect(() => {
+    fetchLeaderboard();
+  }, []);
 
   const setAnswer = (index, value) => {
     const updated = [...answers];
@@ -70,8 +74,8 @@ function App() {
       .then(res => res.json())
       .then(data => {
         if (data.message) {
-          // Optionally show feedback to user
           console.log('Score saved:', data);
+          fetchLeaderboard();
         }
       })
       .catch(err => {
