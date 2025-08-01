@@ -36,7 +36,7 @@ function App() {
   };
 
   const fetchLeaderboard = () => {
-    fetch('https://rounding-backend.onrender.com/api/score')
+    fetch('https://rounding-backend.onrender.com/api/scores')
       .then(res => res.json())
       .then(data => {
         const top5 = data.sort((a, b) => b.score - a.score).slice(0, 5);
