@@ -11,6 +11,7 @@ function App() {
   const [score, setScore] = useState(null);
   const [submitted, setSubmitted] = useState(false);
   const [leaderboard, setLeaderboard] = useState([]);
+  const [showModal, setShowModal] = useState(false);
 
   const fetchLeaderboard = () => {
     fetch('http://localhost:4000/api/scores')
@@ -64,6 +65,7 @@ function App() {
     setScore(count);
     setFeedback(newFeedback);
     setSubmitted(true);
+    setShowModal(true);
   
     // Send name and score to backend
     fetch('http://localhost:4000/api/score', {
@@ -124,6 +126,29 @@ function App() {
           ))}
         </ol>
       </div>
+
+      {showModal && (
+        <div className="modal-backdrop">
+          <div className="modal">
+            <h2>You scored {score} / {questions.length}</h2>
+            <div className="modal-buttons">
+              <button
+                onClick={() => {
+                  setShowModal(false);
+                  reset(); // play again
+                }}
+              >
+                Play Again
+              </button>
+              <button
+                onClick={() => setShowModal(false)}
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       <footer>
         <p>Copyright: www.mathinenglish.com</p>
