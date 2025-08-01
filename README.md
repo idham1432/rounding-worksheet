@@ -1,12 +1,38 @@
-# React + Vite
+# Math Worksheet Web App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple educational web app to help students practice rounding numbers to the nearest 10. Users can complete a quiz, submit their score, and view a live leaderboard.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Live Demo
 
-## Expanding the ESLint configuration
+- **Frontend (Vercel):** [https://rounding-worksheet.vercel.app](https://rounding-worksheet.vercel.app)
+- **Backend (Render):** [https://rounding-backend.onrender.com](https://rounding-backend.onrender.com)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 🧠 Features
+
+- Generates random rounding questions (to the nearest 10)
+- Interactive multiple-choice interface
+- Score evaluation and feedback (correct/incorrect)
+- Name entry and score submission
+- Confetti animation on new high score 🎉
+- Top 5 leaderboard
+- Responsive UI
+
+---
+
+## 🛠 Tech Stack
+
+### Frontend
+- React
+- JavaScript
+- CSS
+- Hosted on **Vercel**
+
+### Backend
+- Node.js + Express
+- MongoDB (via Mongoose)
+- Hosted on **Render**
+
