@@ -36,7 +36,7 @@ function App() {
   };
 
   const fetchLeaderboard = () => {
-    fetch('http://localhost:4000/api/scores')
+    fetch('https://rounding-backend.onrender.com/api/score')
       .then(res => res.json())
       .then(data => {
         const top5 = data.sort((a, b) => b.score - a.score).slice(0, 5);
@@ -90,7 +90,7 @@ function App() {
     setShowModal(true);
   
     // Send name and score to backend
-    fetch('http://localhost:4000/api/score', {
+    fetch('https://rounding-backend.onrender.com/api/score', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name, score: count }),
