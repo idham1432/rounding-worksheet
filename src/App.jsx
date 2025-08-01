@@ -47,6 +47,23 @@ function App() {
     setScore(count);
     setFeedback(newFeedback);
     setSubmitted(true);
+  
+    // Send name and score to backend
+    fetch('http://localhost:4000/api/score', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, score: count }),
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (data.message) {
+          // Optionally show feedback to user
+          console.log('Score saved:', data);
+        }
+      })
+      .catch(err => {
+        console.error('Error saving score:', err);
+      });
   };
 
   return (
