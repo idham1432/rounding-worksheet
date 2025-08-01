@@ -12,6 +12,7 @@ function App() {
   const [submitted, setSubmitted] = useState(false);
   const [leaderboard, setLeaderboard] = useState([]);
   const [showModal, setShowModal] = useState(false);
+  const [isNewHighScore, setIsNewHighScore] = useState(false);
 
   // Utility to check if new score is a high score
   const isHighScore = (newScore) => {
@@ -103,6 +104,9 @@ function App() {
           // Check if this is a high score
           if (isHighScore(count)) {
             launchConfetti();
+            setIsNewHighScore(true); // ✅ mark new high score
+          } else {
+            setIsNewHighScore(false); // ✅ not a high score
           }
         }
       })
@@ -159,7 +163,12 @@ function App() {
       {showModal && (
         <div className="modal-backdrop">
           <div className="modal">
-            <h2>You scored {score} / {questions.length}</h2>
+            <h2>
+              You scored {score} / {questions.length}
+              {isNewHighScore && (
+                <div className="highscore-message">🎉 You just set a new high score! 🎉</div>
+              )}
+            </h2>
             <div className="modal-buttons">
               <button
                 onClick={() => {
