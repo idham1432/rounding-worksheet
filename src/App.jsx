@@ -13,6 +13,28 @@ function App() {
   const [leaderboard, setLeaderboard] = useState([]);
   const [showModal, setShowModal] = useState(false);
 
+  // Utility to check if new score is a high score
+  const isHighScore = (newScore) => {
+    if (leaderboard.length === 0) return true;
+    return newScore > Math.max(...leaderboard.map(entry => entry.score));
+  };
+
+  // Confetti function (calls the global confetti from the script)
+  const launchConfetti = () => {
+    if (typeof window.confetti === 'function') {
+      window.confetti({
+        particleCount: 100,
+        spread: 70,
+        origin: { x:0, y: 0.9 },
+      });
+      window.confetti({
+        particleCount: 100,
+        spread: 70,
+        origin: { x:1, y: 0.9 },
+      });
+    }
+  };
+
   const fetchLeaderboard = () => {
     fetch('http://localhost:4000/api/scores')
       .then(res => res.json())
@@ -78,6 +100,10 @@ function App() {
         if (data.message) {
           console.log('Score saved:', data);
           fetchLeaderboard();
+          // Check if this is a high score
+          if (isHighScore(count)) {
+            launchConfetti();
+          }
         }
       })
       .catch(err => {
