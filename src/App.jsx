@@ -113,6 +113,9 @@ function App() {
 
   return (
     <div className="container">
+      <div className="logo">
+        <img src="public/power.png" alt="" />
+      </div>
       <h1>Rounding Off to Nearest 10</h1>
       <div className="header">
         <label>
@@ -164,7 +167,7 @@ function App() {
                   reset(); // play again
                 }}
               >
-                Play Again
+                Retry
               </button>
               <button
                 onClick={() => setShowModal(false)}

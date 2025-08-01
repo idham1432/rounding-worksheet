@@ -2,11 +2,12 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Arial, sans-serif;
+  font-family: 'Lato', sans-serif;
   padding: 2rem;
-  background: #f0f8ff;
+  background: linear-gradient(45deg, #2f1c53, #a46dff, #f6d1fd);
   display: flex;
   justify-content: center;
+  color: #444;
 }
 
 .container {
@@ -18,9 +19,26 @@ body {
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
+.logo {
+  margin: 0 auto;
+  display: flex;
+  align-self: center;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.logo img {
+  width: 100%;
+}
+
 h1 {
   text-align: center;
-  font-size: 36px;
+  font-size: 32px;
+  padding: 0 20px;
 }
 
 .header {
@@ -121,6 +139,8 @@ button:hover {
   width: 100%;
   padding: 20px;
   background: #fafafa;
+  background: #F9986B;
+  background: linear-gradient(-45deg, #F9986B, #FFE0B2);
   border-radius: 12px;
   border: 1px solid #ddd;
   box-sizing: border-box;
@@ -129,7 +149,8 @@ button:hover {
   margin-top: 0;
 }
 .leaderboard ol {
-  padding-left: 1.4em;
+  padding-left: 2em;
+  font-size: 20px;
 }
 
 .modal-backdrop {
@@ -162,7 +183,6 @@ button:hover {
 }
 .modal button:last-child {
   background: #555;
-  width: 100px;
 }
 .modal button:hover {
   filter: brightness(0.95);
