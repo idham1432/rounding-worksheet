@@ -118,7 +118,7 @@ function App() {
   return (
     <div className="container">
       <div className="logo">
-        <img src="public/power.png" alt="" />
+        <img src="/power.png" alt="" />
       </div>
       <h1>Rounding Off to Nearest 10</h1>
       <div className="header">
