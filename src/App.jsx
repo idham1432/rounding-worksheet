@@ -10,10 +10,23 @@ function App() {
   const [name, setName] = useState('');
   const [score, setScore] = useState(null);
   const [submitted, setSubmitted] = useState(false);
+  const [leaderboard, setLeaderboard] = useState([]);
 
   useEffect(() => {
     setAnswers(Array(questions.length).fill(null));
   }, [questions]);
+
+  useEffect(() => {
+    fetch('http://localhost:4000/api/scores')
+      .then(res => res.json())
+      .then(data => {
+        const top5 = data.sort((a, b) => b.score - a.score).slice(0, 5);
+        setLeaderboard(top5);
+      })
+      .catch(err => {
+        console.error('Error fetching leaderboard:', err);
+      });
+  }, [submitted]);
 
   const setAnswer = (index, value) => {
     const updated = [...answers];
@@ -95,6 +108,17 @@ function App() {
       <div className="buttons">
         <button onClick={submit}>Submit</button>
         <button onClick={reset}>Reset</button>
+      </div>
+
+      <div className="leaderboard">
+        <h2>Leaderboard</h2>
+        <ol>
+          {leaderboard.map((entry, i) => (
+            <li key={entry._id || i}>
+              <strong>{entry.name}</strong>: {entry.score}
+            </li>
+          ))}
+        </ol>
       </div>
 
       <footer>
